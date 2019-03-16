@@ -1,0 +1,107 @@
+﻿{% extends 'web/base_main.html' %}
+
+{% block title %}
+    文章详情
+{% endblock %}
+{% block css %}
+    {{ super() }}
+    <!-- 本页样式表 -->
+    <link href="/static/web/css/article.css" rel="stylesheet" />
+    <link href="/static/web/css/home.css" rel="stylesheet" />
+    <link href="/static/web/css/prettify.css" rel="stylesheet" />
+    <!-- 本页样式表 -->
+    <link href="/static/web/css/detail.css" rel="stylesheet" />
+
+{% endblock %}
+{% block content %}
+
+<div class="blog-body">
+        <div class="blog-container">
+            <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
+                <a href="{{ url_for('web.index') }}" title="网站首页">网站首页</a>
+
+                <a><cite>{{ articles.title }}</cite></a>
+            </blockquote>
+            <div class="blog-main">
+                <div class="blog-main-left">
+                    <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
+
+                    <div class="article-detail shadow">
+                        <div class="article-detail-title">
+                            {{ articles.title }}
+                        </div>
+                        <div class="article-detail-info">
+                            <span>{{ articles.create_time }}</span>
+                        </div>
+                        <div class="article-detail-content">
+
+
+                            <div id="doc-content">
+                            <textarea style="display:none;">{{ articles.contect }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 评论区域 -->
+
+                </div>
+                <div class="blog-main-right">
+                    <!--右边悬浮 平板或手机设备显示-->
+                    <div class="category-toggle"><i class="fa fa-chevron-left"></i></div><!--这个div位置不能改，否则需要添加一个div来代替它或者修改样式表-->
+                   <div class="article-category shadow">
+                        <div class="article-category-title">分类导航</div>
+                        {% for type in types %}
+                            <a href="">{{ type.t_name }}</a>
+                        {% endfor %}
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">SQL Server</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">Entity Framework</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">Web前端</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">C#基础</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">杂文随笔</a>-->
+                        <div class="clear"></div>
+                    </div>
+
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+
+    <!--侧边导航-->
+
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="/static/back/js/editormd.js"></script>
+    <script src="/static/web/js/jquery.min.js"></script>
+    <script src="/static/web/lib/marked.min.js"></script>
+    <script src="/static/web/lib/prettify.min.js"></script>
+    <script src="/static/web/lib/raphael.min.js"></script>
+    <script src="/static/web/lib/underscore.min.js"></script>
+    <script src="/static/web/lib/sequence-diagram.min.js"></script>
+    <script src="/static/web/lib/flowchart.min.js"></script>
+    <script src="/static/web/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/web/js/editormd.min.js"></script>
+    <script src="/static/web/js/home.js"></script>
+        <!-- 比较好用的代码着色插件 -->
+    <script src="/static/web/js/prettify.js"></script>
+    <!-- 本页脚本 -->
+    <script src="/static/web/js/detail.js"></script>
+    <script type="text/javascript">
+    var testEditor;
+    $(function () {
+        testEditor = editormd.markdownToHTML("doc-content", {//注意：这里是上面DIV的id
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            codeFold: true,
+    });});
+    </script>
+
+{% endblock %}

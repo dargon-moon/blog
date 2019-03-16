@@ -1,0 +1,116 @@
+﻿{% extends 'web/base_main.html' %}
+
+{% block css %}
+    {{ super() }}
+    <!-- 本页样式表 -->
+    <link href="/static/web/css/home.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <div class="blog-body">
+        <!-- canvas -->
+        <canvas id="canvas-banner" style="background: #393D49;"></canvas>
+        <!--为了及时效果需要立即设置canvas宽高，否则就在home.js中设置-->
+        <script type="text/javascript">
+            var canvas = document.getElementById('canvas-banner');
+            canvas.width = window.document.body.clientWidth - 10;//减去滚动条的宽度
+            if (screen.width >= 992) {
+                canvas.height = window.innerHeight * 1 / 3;
+            } else {
+                canvas.height = window.innerHeight * 2 / 7;
+            }
+        </script>
+        <!-- 这个一般才是真正的主体内容 -->
+        <div class="blog-container">
+            <div class="blog-main">
+                <!-- 网站公告提示 -->
+                <div class="home-tips shadow">
+                    <i style="float:left;line-height:17px;" class="fa fa-volume-up"></i>
+                    <div class="home-tips-container">
+                        <span style="color: #009688">偷偷告诉大家，本博客的后台管理也正在制作，为大家准备了游客专用账号！</span>
+                        <span style="color: red">网站新增留言回复啦！使用QQ登陆即可回复，人人都可以回复！</span>
+                        <span style="color: red">如果你觉得网站做得还不错，来Fly社区点个赞吧！<a href="http://fly.layui.com/case/2017/" target="_blank" style="color:#01AAED">点我前往</a></span>
+                        <span style="color: #009688">不落阁 &nbsp;—— &nbsp;一个.NET程序员的个人博客，新版网站采用Layui为前端框架，目前正在建设中！</span>
+                    </div>
+                </div>
+                <!--左边文章列表-->
+                <div class="blog-main-left">
+                    {% for article in articles %}
+                    <div class="article shadow">
+                        <div class="article-right">
+                            <div class="article-title">
+                                <a href="{{ url_for('web.article', id=article.id) }}" style="margin-left: 61px;">{{ article.title }}</a>
+                            </div>
+                            <div class="article-abstract">
+                                {{ article.desc }}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="article-footer">
+                            <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ article.create_time }}</span>
+                            <!--<span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;{{ user.username }}</span>-->
+                            <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="{{ url_for('web.article_type', id=article.tp.id) }}">{{ article.tp.t_name }}</a></span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!--右边小栏目-->
+                <div class="blog-main-right">
+                    <div class="blogerinfo shadow">
+                        <div class="blogerinfo-figure">
+                            <img src="/static/web/images/Absolutely.jpg" alt="Absolutely" />
+                        </div>
+                        <p class="blogerinfo-nickname">Absolutely</p>
+                        <p class="blogerinfo-introduce">一枚90后程序员，.NET开发工程师</p>
+                        <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;四川 - 成都</p>
+                        <hr />
+                    </div>
+                    <div></div><!--占位-->
+                         <div class="article-category shadow">
+                        <div class="article-category-title">分类导航</div>
+                        {% for type in types %}
+                            <a href="{{ url_for('web.article_type', id=type.id) }}" >{{ type.t_name }}</a>
+                        {% endfor %}
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">SQL Server</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">Entity Framework</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">Web前端</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">C#基础</a>-->
+                        <!--<a href="javascript:layer.msg(&#39;切换到相应分类&#39;)">杂文随笔</a>-->
+                        <div class="clear"></div>
+                    </div>
+                     <div class="blog-module shadow">
+                        <div class="blog-module-title">作者推荐</div>
+                        <ul class="fa-ul blog-module-ul">
+                            {% for article in articles %}
+                            <li><i class="fa-li fa fa-hand-o-right"></i><a href="{{ url_for('web.article', id=article.id) }}" >{{ article.title }}</a></li>
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC 防范跨站请求伪造（CSRF）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">C#基础知识回顾-扩展方法</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（一）（HTML篇）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（二）（CSS篇）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">一步步制作时光轴（三）（JS篇）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">写了个Win10风格快捷菜单！</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC自定义错误页</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">ASP.NET MVC制作404跳转（非302和200）</a></li>-->
+                            <!--<li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a></li>-->
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="blog-module shadow">
+                        <div class="blog-module-title">友情链接</div>
+                        <ul class="blogroll">
+                            <li><a target="_blank" href="http://www.layui.com/" title="Layui">Layui</a></li>
+                            <li><a target="_blank" href="http://www.pagemark.cn/" title="页签">页签</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script src="/static/web/js/home.js"></script>
+{% endblock %}

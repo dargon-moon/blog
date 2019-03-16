@@ -1,0 +1,41 @@
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    用户信息管理
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">修改密码</h2>
+       <!--<a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>-->
+      </div>
+
+         <form action="" method="post">
+
+                {{ error }}
+             <div>
+                 <p style=" margin-left: 36%;position: absolute;;margin-top: 100px;">原密码：</p><input style="position: absolute;margin-top: 96px;margin-left: 439px;" type="text" name="oldpassword" placeholder="请输入原密码">
+             </div>
+
+             <div>
+                 <p style=" margin-left: 36%;position: absolute;;margin-top: 150px;">新密码：</p><input style="position: absolute;margin-top: 146px;margin-left: 439px;" type="text" name="newpassword" placeholder="请输入新密码">
+             </div>
+
+              <div>
+                 <p style=" margin-left: 36%;position: absolute;;margin-top: 200px;">确认密码：</p><input style="position: absolute;margin-top: 196px;margin-left: 439px;" type="text" name="newpassword2" placeholder="请确认新密码">
+             </div>
+             <input type="submit" style="position: absolute;margin-left: 33%;margin-top: 270px;" value="确认修改">
+            <button  style="position:absolute;margin-left:56%;margin-top:270px;color:black;"  >
+                <a href="{{ url_for('first.user_message') }}" style="color:black;">取消</a>
+            </button>
+
+
+
+     </form>
+
+
+ </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    用户信息管理
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">用户信息</h2>
+       <!--<a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>-->
+      </div>
+
+      <table class="table">
+       <tr>
+
+
+        <th>登录账号</th>
+
+        <th>登录密码</th>
+
+        <th>操作</th>
+       </tr>
+       <tr>
+        <td>
+            {% for user in users  %}
+                {% if user.id == session['user_id'] %}
+                    {{ user.username }}
+
+
+        </td>
+        <td class="center">********</td>
+        <td class="center">
+         <a href="{{ url_for('first.user_alter', id=user.id) }}" title="修改密码" class="link_icon">&#101;</a>
+         <a href="{{ url_for('first.user_del', id=user.id) }}" title="注销用户" class="link_icon">&#100;</a>
+        </td>
+       </tr>
+      </table>
+     {% endif %}
+         {% endfor %}
+ </div>
+</section>
+{% endblock %}

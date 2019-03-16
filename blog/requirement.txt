@@ -1,0 +1,5 @@
+flask
+redis
+flask_script
+flask_session
+flask-blueprint

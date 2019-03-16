@@ -1,0 +1,93 @@
+{% extends 'web/base.html' %}
+
+{% block head %}
+    <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="shortcut icon" href="/static/web/images/Logo_40.png" type="image/x-icon">
+{% endblock %}
+
+{% block css %}
+    <link href="/static/web/plug/layui/css/layui.css" rel="stylesheet" />
+    <!--font-awesome-->
+    <link href="/static/web/plug/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--全局样式表-->
+    <link href="/static/web/css/global.css" rel="stylesheet" />
+{% endblock %}
+
+{% block top %}
+     <!-- 导航 -->
+    <nav class="blog-nav layui-header">
+        <div class="blog-container">
+            <!-- QQ互联登陆 -->
+            <a href="javascript:;" class="blog-user">
+                <i class="fa fa-qq"></i>
+            </a>
+            <a href="javascript:;" class="blog-user layui-hide">
+                <img src="/static/web/images/Absolutely.jpg" alt="Absolutely" title="Absolutely" />
+            </a>
+            <!-- 不落阁 -->
+            <a class="blog-logo" href="{{ url_for('web.index') }}">不落阁</a>
+            <!-- 导航菜单 -->
+            <ul class="layui-nav" lay-filter="nav">
+                <li class="layui-nav-item layui-this">
+                    <a href="{{ url_for('web.index') }}"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="{{ url_for('web.about') }}"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+                </li>
+            </ul>
+            <!-- 手机和平板的导航开关 -->
+            <a class="blog-navicon" href="javascript:;">
+                <i class="fa fa-navicon"></i>
+            </a>
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+{% block footer %}
+    <footer class="blog-footer">
+        <p><span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.lyblogs.cn">不落阁</a><span>Design By LY</span></p>
+        <p><a href="http://www.miibeian.gov.cn/" target="_blank">蜀ICP备16029915号-1</a></p>
+    </footer>
+{% endblock %}
+
+{% block layui %}
+    <ul class="layui-nav layui-nav-tree layui-nav-side blog-nav-left layui-hide" lay-filter="nav">
+        <li class="layui-nav-item layui-this">
+            <a href="home.html"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="about.html"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block share %}
+    <div class="blog-share layui-hide">
+        <div class="blog-share-body">
+            <div style="width: 200px;height:100%;">
+                <div class="bdsharebuttonbox">
+                    <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block mask %}
+<div class="blog-mask animated layui-hide"></div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/web/plug/layui/layui.js"></script>
+    <!-- 全局脚本 -->
+    <script src="/static/web/js/global.js"></script>
+{% endblock %}
